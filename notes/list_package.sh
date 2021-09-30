@@ -32,7 +32,6 @@ sudo apt-get update
 sudo apt-get install libfftw3-dev
 
 # eigen3 
-
 sudo apt-get install libeigen3-dev
 
 # R2016a (9.0.0.341360) 64-bit (glnxa64)
@@ -87,3 +86,17 @@ https://onethinglab.com/2019/01/30/how-to-install-latest-boost-library-on-ubuntu
 
 # Install whatsapp-for-linux
 sudo snap install whatsapp-for-linux
+
+
+# How to Install PyTorch on Ubuntu
+# https://varhowto.com/install-pytorch-ubuntu-20-04/
+# to install CUDA
+sudo apt install nvidia-cuda-toolkit
+# check installation: nvcc -V
+pip3 install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+
+
+# install R ubuntu:
+sudo apt-get install r-base
+# install r-igraph:
+sudo apt-get install -y r-cran-igraph

@@ -108,8 +108,6 @@ sudo apt-get install python-igraph  # python3-igraph
 
 # ====== ssh-keygen ssh with out password ======
 https://www.linuxtrainingacademy.com/ssh-login-without-password/
-# for macos
-https://help.dreamhost.com/hc/en-us/articles/216499537-How-to-configure-passwordless-login-in-Mac-OS-X-and-Linux
 
 
 
@@ -705,6 +703,9 @@ source ./venv/bin/activate
 virtualenv --system-site-packages -p python3 env_name
 source env_name/bin/activate
 
+# to use packages already installed in machine
+python3 -m venv --system-site-packages name
+source name/bin/activate
 
 # Build Your First pip Package
 # https://dzone.com/articles/executable-package-pip-install
@@ -716,7 +717,7 @@ source env_name/bin/activate
 # Go into your package folder and execute this command: 
 python3 setup.py bdist_wheel
 # to upload:
-python -m twine upload dist/*
+python3 -m twine upload dist/*
 
 
 # sphinx uml generator:
@@ -919,3 +920,31 @@ split -b 10M data.tar.gz "part"
 ls -lh part*
 #  How to Join Tar Files After Splitting
 cat part* > parts.tar.gz
+
+# How can PPAs be removed?
+sudo apt-add-repository --remove ppa:repo_name/subdirectory
+
+
+# How to use openvpn surfshark in ubuntu:
+top right -> vpn setting->VPN-> import from file
+navigate to the config file and enter user and pass
+
+# convert video : webm to mp4
+ffmpeg -i input.webm -r 10 -cpu-used 5 -c:v libx264 -crf 20 -c:a aac -strict experimental -loglevel error output01.mp4
+
+
+
+
+
+
+# jupyter notebook in virtual enviromnent
+pip3 install --user virtualenv
+virtualenv myenv
+source myenv/bin/activate
+python3 -m pip install --upgrade pip
+pip3 install ipykernel 
+jupyter kernelspec list
+
+
+# Failure to download extra data files
+sudo apt-get install --reinstall ttf-mscorefonts-installer  

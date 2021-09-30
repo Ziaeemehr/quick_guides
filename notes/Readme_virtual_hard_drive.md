@@ -1,5 +1,6 @@
 ### References
 
+-  [install windows 7 from virtual box on Ubuntu, create virtual hard drive](https://askubuntu.com/questions/1227176/install-windows-7-from-virtual-box-on-ubuntu-create-virtual-hard-drive)
 -  [How to Create a Virtual HardDisk Volume Using a File in Linux](https://www.tecmint.com/create-virtual-harddisk-volume-in-linux/)
 
 
@@ -34,5 +35,3 @@ $ VBoxManage convertdd input.img output.vdi
 
 [Nemo file manager: How can I change font color of folder names in toolbar button?](https://askubuntu.com/questions/328520/nemo-file-manager-how-can-i-change-font-color-of-folder-names-in-toolbar-button)
 
-[install windows 7 from virtual box on Ubuntu, create virtual hard drive
-](https://askubuntu.com/questions/1227176/install-windows-7-from-virtual-box-on-ubuntu-create-virtual-hard-drive)

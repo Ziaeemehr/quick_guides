@@ -303,3 +303,15 @@ cMap = ListedColormap(['white', 'green', 'blue', 'red'])
 
 colors = 'lime red blue magenta yellow'.split()
 cmap = matplotlib.colors.ListedColormap(colors, name='colors', N=5)
+
+from matplotlib.gridspec import GridSpec
+def make_grid(nrows, ncols, left, right, hspace, wspace, bottom, top):
+    gs = GridSpec(nrows, ncols)
+    gs.update(left=left, right=right,
+              hspace=hspace, wspace=wspace,
+              bottom=bottom, top=top)
+    ax = []
+    for i in range(nrows):
+        for j in range(ncols):
+            ax.append(plt.subplot(gs[i, j]))
+    return ax
