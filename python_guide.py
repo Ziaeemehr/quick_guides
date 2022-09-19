@@ -248,3 +248,9 @@ print(counter.most_common(3))
 # colab save file in drive
 from google.colab import files
 files.download("data.csv")
+
+
+#3D array
+a = np.tile(np.arange(1,7, dtype=float), 2)
+b = a.reshape((2,2,3))
+x = np.nanmean(b, axis=0)

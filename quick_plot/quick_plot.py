@@ -217,6 +217,12 @@ for i in range(3):
     axs[i].set_prop_cycle(cycler('color', [cm(1.*ii/NUM_COLORS)
                                            for ii in range(NUM_COLORS)]))
 
+n=3
+colors = plt.cm.Reds(np.linspace(0, 1, n))
+for i in range(n):
+    plt.plot(y[i,:], lw=.3, alpha=0.9, color=colors[i])
+
+
 
 fig = pl.figure(figsize=(12, 9))
 gs1 = gridspec.GridSpec(3, 1, hspace=0.0)

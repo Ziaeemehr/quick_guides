@@ -331,29 +331,51 @@ inxi -G
 lspci -k | grep -A 2 -i "VGA"
 software-properties-gtk
 
-# Installing CUDA on Linux Mint 18.1
-sudo apt-get install nvidia-cuda-toolkit
-https://forums.linuxmint.com/viewtopic.php?t=246562
-https://blog.softhints.com/install-latest-nvidia-drivers-ubuntu-mint/
-# Check what drivers are installed
-dpkg --get-selections | grep nvidia
-see the version of cuda:
-nvcc --version
+# OLD
+# # Installing CUDA on Linux Mint 18.1
+# sudo apt-get install nvidia-cuda-toolkit
+# https://forums.linuxmint.com/viewtopic.php?t=246562
+# https://blog.softhints.com/install-latest-nvidia-drivers-ubuntu-mint/
+# # Check what drivers are installed
+# dpkg --get-selections | grep nvidia
+# see the version of cuda:
+# nvcc --version
 
 
-install cuda on ubuntu 18.04
-https://askubuntu.com/questions/1028830/how-do-i-install-cuda-on-ubuntu-18-04 
+# install cuda on ubuntu 18.04
+# https://askubuntu.com/questions/1028830/how-do-i-install-cuda-on-ubuntu-18-04 
 
-sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo apt update
-sudo ubuntu-drivers autoinstall
-#reboot
-sudo apt install nvidia-cuda-toolkit gcc-6
-nvcc --version
+# sudo add-apt-repository ppa:graphics-drivers/ppa
+# sudo apt update
+# sudo ubuntu-drivers autoinstall
+# #reboot
+# sudo apt install nvidia-cuda-toolkit gcc-6
+# nvcc --version
+
+# this solved the problem:
+# https://medium.com/@anarmammadli/how-to-install-cuda-11-4-on-ubuntu-18-04-or-20-04-63f3dee2099
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/11.4.0/local_installers/cuda-repo-ubuntu2004-11-4-local_11.4.0-470.42.01-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2004-11-4-local_11.4.0-470.42.01-1_amd64.deb
+sudo apt-key add /var/cuda-repo-ubuntu2004-11-4-local/7fa2af80.pub
+sudo apt-get update
+sudo apt-get -y install cuda
+
+# set PATH for cuda 11.4 installation
+if [ -d "/usr/local/cuda-11.4/bin/" ]; then
+    export PATH=/usr/local/cuda-11.4/bin${PATH:+:${PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+fi
 
 # Ubuntu Linux Install Nvidia Driver (Latest Proprietary Driver)
 # https://www.cyberciti.biz/faq/ubuntu-linux-install-nvidia-driver-latest-proprietary-driver/
 
+# OLD
+# # On ubuntu 2020
+# sudo apt install nvidia-driver-455 # number will change
+# sudo apt install nvidia-cuda-toolkit
+# #secure boot EUFI need to be diabled.
 
 sudo apt-get update error
 rm /etc/apt/source.liste 
@@ -416,6 +438,9 @@ git push -u origin master
 
 # install eigen3
 sudo apt-get install libeigen3-dev
+# .bashrc
+export CPATH=/usr/include/eigen3
+
 
 #install texlive;
 after mounting iso file:
@@ -945,6 +970,90 @@ python3 -m pip install --upgrade pip
 pip3 install ipykernel 
 jupyter kernelspec list
 
+# for tvb_sbi:
+pip3 install jupyterlab
+# https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html
 
 # Failure to download extra data files
 sudo apt-get install --reinstall ttf-mscorefonts-installer  
+
+
+### Git push requires username and password
+
+# A common cause is cloning using the default (HTTPS) instead of SSH. You can correct this by going to your repository, clicking "Clone or download", then clicking the "Use SSH" button above the URL field and updating the URL of your origin remote like this:
+
+git remote set-url origin git@github.com:username/repo.git
+
+
+
+install zsh, oh my zsh
+
+sudo apt install curl
+sudo apt install git-all
+sudo apt install zsh
+chsh -s /usr/bin/zsh
+# log out
+# open terminal, select 2 for recommended setting, 
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+installing Matlab 2020a:
+
+error:
+sudo ./install_unix 
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Unable to launch the MATLABWindow application
+[1]    348409 abort      sudo ./install_unix
+
+solution: 
+chmod 755 -R matlab_folder
+
+# Create MATLAB Symbolic link
+sudo ln -s /usr/local/MATLAB/R2020b/bin/matlab /usr/local/bin/matlab
+
+# diable vscode wavy underline errors:
+"workbench.colorCustomizations": {
+        "editorError.foreground":   "#00000000",
+        "editorWarning.foreground": "#00000000",
+        "editorInfo.foreground":    "#00000000"
+}
+
+# Find the total size of certain files within a directory branch
+find . -type f -name '*.err' -exec du -ch {} + | grep total$
+
+
+#installing pytorch 1.9 cu111:
+pip3 install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+
+# Ebrain builing package: # -----------------------------------------
+system("find . -name 'Python.h'")
+# /srv/main-spack-instance/spack/opt/spack/linux-centos7-broadwell/gcc-10.3.0/python-3.8.11-b4kewidwpj7so3hy6fdzldmq4227cr5z/include/python3.8
+import sys
+print(sys.executable)
+# split the path and add include/python3.8
+# -------------------------------------------------------------------
+
+
+# vscode does not find virtualenv
+# look for venv path in setting 
+# add for example ~/VE
+
+
+# install cuda 11.1
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
+sudo apt-key add /var/cuda-repo-ubuntu2004-11-1-local/7fa2af80.pub
+sudo apt-get update
+sudo apt-get -y install cuda
+
+
+# slurm cancell all jobs
+squeue -u $USER | grep 197 | awk '{print $1}' | xargs -n 1 scancel
+
+# Cloning a conda environment
+conda create --name myclone --clone myenv  
+conda info --envs # to check 
+# myclone: new environment
+# myenv: existing environment
