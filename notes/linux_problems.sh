@@ -1007,6 +1007,11 @@ terminate called after throwing an instance of 'std::runtime_error'
 solution: 
 chmod 755 -R matlab_folder
 
+# Licensing error: -8,523.
+# solution:
+sudo cp libmwlmgrimpl.so <matlab dir>/bin/glnxa64/matlab_startup_plugins/lmgrimpl/
+
+
 # Create MATLAB Symbolic link
 sudo ln -s /usr/local/MATLAB/R2020b/bin/matlab /usr/local/bin/matlab
 
@@ -1057,3 +1062,18 @@ conda create --name myclone --clone myenv
 conda info --envs # to check 
 # myclone: new environment
 # myenv: existing environment
+
+
+
+
+# pymc4, muse 
+conda install -c conda-forge "pymc==4"  
+pip install git+https://github.com/marius311/muse_inference.git
+conda install -c anaconda ipython  
+conda install -n pymc4 ipykernel --update-deps --force-reinstall
+conda install jax cuda-nvcc -c conda-forge -c nvidia
+
+
+# making a symlink
+ln -s /path/to/file /path/to/symlink
+bindfs /mnt/scratch/scratch/abolfazl/ADNI_PAUL ADNI_PAUL_bind

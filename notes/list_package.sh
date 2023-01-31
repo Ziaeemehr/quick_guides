@@ -100,3 +100,16 @@ pip3 install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pyt
 sudo apt-get install r-base
 # install r-igraph:
 sudo apt-get install -y r-cran-igraph
+
+
+
+# ---------------------------------------------------------------------------------------
+# diable default python from anaconda
+CmdStan v2.28.2 help
+
+  Build CmdStan utilities:
+    > make build -j4
+  
+    Remove the built CmdStan tools:
+    > make clean-all
+# ---------------------------------------------------------------------------------------

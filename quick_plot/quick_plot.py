@@ -321,3 +321,20 @@ def make_grid(nrows, ncols, left, right, hspace, wspace, bottom, top):
         for j in range(ncols):
             ax.append(plt.subplot(gs[i, j]))
     return ax
+
+
+
+mosaic = """
+ABC
+ABD
+"""
+fig = plt.figure(constrained_layout=True, figsize=(12, 5))
+ax = fig.subplot_mosaic(mosaic)
+
+LABELSIZE = 18
+plt.rc('axes', labelsize=LABELSIZE)
+plt.rc('axes', titlesize=LABELSIZE)
+plt.rc('figure', titlesize=LABELSIZE)
+plt.rc('legend', fontsize=LABELSIZE)
+plt.rc('xtick', labelsize=LABELSIZE)
+plt.rc('ytick', labelsize=LABELSIZE)
