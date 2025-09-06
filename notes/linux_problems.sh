@@ -982,6 +982,7 @@ sudo apt-get install --reinstall ttf-mscorefonts-installer
 
 # A common cause is cloning using the default (HTTPS) instead of SSH. You can correct this by going to your repository, clicking "Clone or download", then clicking the "Use SSH" button above the URL field and updating the URL of your origin remote like this:
 
+<<<<<<< Updated upstream
 git remote set-url origin git@github.com:username/repo.git
 
 
@@ -1077,3 +1078,6 @@ conda install jax cuda-nvcc -c conda-forge -c nvidia
 # making a symlink
 ln -s /path/to/file /path/to/symlink
 bindfs /mnt/scratch/scratch/abolfazl/ADNI_PAUL ADNI_PAUL_bind
+=======
+git remote set-url origin git@github.com:username/repo.git
+>>>>>>> Stashed changes
